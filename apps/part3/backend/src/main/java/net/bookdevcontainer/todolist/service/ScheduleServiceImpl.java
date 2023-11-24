@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
 
 // リトライを設定する場合は次の行を有効化してください
-// import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.retry.annotation.Retry;
 
 
 @Slf4j
@@ -30,7 +30,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     // リトライを設定する場合は次の行を有効化してください
-    // @Retry(name = "scheduleRetry", fallbackMethod = "retryFallback")
+    @Retry(name = "scheduleRetry", fallbackMethod = "retryFallback")
     public ResponseEntity<String> schedule() {
         
         log.info("Invoke Schedule API:  count= " + i++);
